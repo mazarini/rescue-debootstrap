@@ -1,0 +1,46 @@
+# ruff.toml
+
+# Version minimale de Python supportée par le projet
+target-version = "py310"          # adapte selon tes besoins (py311, py312, py313...)
+
+# Longueur de ligne (88 = défaut Black, 120 = plus confortable pour beaucoup d'équipes)
+line-length = 88                  # ou 100 / 120 si tu préfères
+
+indent-width = 4
+
+# ─── Linting ────────────────────────────────────────────────────────────────
+[lint]
+# Règles activées (le combo le plus courant en 2025-2026)
+select = [
+    "E",      # pycodestyle (erreurs de style)
+    "W",      # pycodestyle (warnings)
+    "F",      # pyflakes (erreurs logiques simples)
+    "I",      # isort (tri et organisation des imports)
+    "UP",     # pyupgrade (conseils modernisation Python)
+    "B",      # flake8-bugbear (pièges courants)
+    "SIM",    # flake8-simplify (simplifications possibles)
+    "C4",     # flake8-comprehensions (meilleures compréhensions)
+    "RUF",    # règles spécifiques à Ruff (souvent très utiles)
+]
+
+# Règles souvent désactivées (car gérées par le formatter ou trop bruyantes)
+ignore = [
+    "E501",   # line too long → le formatter s'en occupe
+    "E741",   # ambiguous variable name (souvent OK avec noms clairs)
+]
+
+# Par fichier : assouplir pour les tests, exemples, etc.
+[lint.per-file-ignores]
+"tests/*"     = ["S101"]          # pas de assert dans les fixtures si tu utilises pytest
+"examples/*"  = ["T201", "T203"] # print() autorisé dans les exemples
+
+# ─── Formatting ─────────────────────────────────────────────────────────────
+[format]
+quote-style = "double"            # ou "single" si tu préfères
+indent-style = "space"
+skip-magic-trailing-comma = false # garde les virgules trailing (recommandé)
+line-ending = "auto"
+
+# Reformate le code dans les docstrings (très utile)
+docstring-code-format = true
+docstring-code-line-length = 88   # ou "dynamic" / même valeur que line-length

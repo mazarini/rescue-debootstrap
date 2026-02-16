@@ -1,0 +1,41 @@
+{
+  "folders": [
+    {
+      "path": "../",
+      "name": "rescue-debootstrap"
+    }
+  ],
+  "settings": {
+    // ─── Ruff comme formateur par défaut pour Python ───────────────────────
+    "[python]": {
+      "editor.defaultFormatter": "charliermarsh.ruff",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",           // corrige automatiquement les violations fixables
+        "source.fixAll.ruff": "explicit",
+        "source.organizeImports.ruff": "explicit"    
+      }
+    },
+
+    // ─── Pour les notebooks Jupyter ────────────────────────────────────────
+    "notebook.formatOnSave.enabled": true,
+    "notebook.defaultFormatter": "charliermarsh.ruff",
+
+    // ─── Activation et priorités Ruff ──────────────────────────────────────
+    "ruff.enable": true,                      // explicite (par défaut true, mais on pose)
+    "ruff.lint.enable": true,
+    "ruff.format.enable": true,
+
+    // Priorité au fichier de config du projet (ruff.toml / pyproject.toml)
+    "ruff.configurationPreference": "filesystemFirst",
+
+    // Utilise le serveur natif Ruff (très rapide, recommandé en 2026)
+    "ruff.nativeServer": "auto",              // "on" pour forcer, "off" pour désactiver
+
+    // Optionnel : si tu veux désactiver complètement les anciens formateurs/linters
+    "python.formatting.provider": "none",     // désactive black, autopep8, yapf intégré
+    "python.linting.enabled": false,          // désactive les anciens linters Python
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": false
+  }
+}
