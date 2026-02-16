@@ -46,15 +46,17 @@ def load_env() -> Env:
     )
 
 
-def print_env(env: Env) -> None:
+def print_env() -> None:
     print("Environnement chargé :")
-    print(f"  Host    : {env.getHost()}")
-    print(f"  Debug   : {env.isDebug()}")
-    print(f"  Dry run : {env.isDryRun()}")
+    print(f"  Host    : {ENV.getHost()}")
+    print(f"  Debug   : {ENV.isDebug()}")
+    print(f"  Dry run : {ENV.isDryRun()}")
 
+
+ENV: Env = load_env()
 
 if __name__ == "__main__":
     try:
-        print_env(load_env())
+        print_env()
     except Exception as e:
         print(f"Erreur : {type(e).__name__}: {e}")

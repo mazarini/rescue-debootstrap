@@ -1,0 +1,7 @@
+mazarini_rescue_debootstrap:
+  host:
+    hostname: "atto2"
+    domain: "mazarini.ovh"
+    rescue_name: "rescue12-customer-eu"
+#    efi: true           # default
+#    mountpoint: "/mnt"  # default
