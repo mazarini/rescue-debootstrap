@@ -8,33 +8,6 @@ from pydantic import ValidationError
 from rescue_debootstrap.model.install_config import InstallConfig
 from rescue_debootstrap.util.env_util import ENV
 
-# ─── Modèles Pydantic ────────────────────────────────────────────────────────
-
-
-class Disk:
-    device: str
-    disk_model: str
-
-
-class Partition:
-    number: int
-    type: str
-    size: int
-    label: str
-
-
-class StorageGroup:
-    disks: list[Disk]
-    partitions: list[Partition]
-
-
-class DiskModelSpec:
-    type: str
-    sector_size: int
-    start_sector: int
-    end_sector: int
-
-
 # ─── Fonctions de chargement ─────────────────────────────────────────────────
 
 

@@ -1,11 +1,9 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from rescue_debootstrap.model.host import Host
+from rescue_debootstrap.model.storage_group import StorageGroup
 
 
 class InstallConfig(BaseModel):
     host: Host
-
-
-#    storages: list[StorageGroup] = Field(default_factory=list)
-#    disk_model: dict[str, DiskModelSpec] = Field(default_factory=dict)
+    storage_groups: list[StorageGroup] = Field(default_factory=list)

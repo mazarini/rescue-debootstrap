@@ -1,0 +1,22 @@
+mazarini_rescue_debootstrap:
+  host:
+    hostname: "myhost"
+    rescue_name: "rescue01"
+    domain: "localdomain"
+    efi: true
+    mountpoint: "/mnt"
+  storage_groups:
+    # Groupe principal pour le système
+    - disk_model: 
+        type: "nvme"
+        sector_size: 4096
+        start_sector: 256
+        end_sector: 109887240
+      disks: 
+        - {number: 1, device: "/dev/nvme0n1"}
+        - {number: 2, device: "/dev/nvme1n1"}
+      partitions:
+        - { number: 1, type: "efi",   size: 66560,     label: "EFI" }      # 260 MiB
+        - { number: 2, type: "ext4",  size: 195328,    label: "BOOT" }     # 783 MiB
+        - { number: 3, type: "swap",  size: 2097152,   label: "SWAP" }     # 8 GiB
+        - { number: 4, type: "btrfs", size: 107527945, label: "RPOOL"}     # 420 GiB
