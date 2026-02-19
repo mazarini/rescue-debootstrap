@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+REMOTE="root@atto2.mazarini.ovh"
+REMOTE_DIR="/root/install"
+
+rsync -avz --delete \
+  --exclude '__pycache__' \
+  --exclude '.venv' \
+  --exclude '.ruff_cache' \
+  --exclude '.ruff_cache' \
+  --exclude '.pytest_cache' \
+  --exclude '.mypy_cache' \
+  ./ "$REMOTE:$REMOTE_DIR" \
+
+ssh "$REMOTE" \
+  "$REMOTE_DIR/bin/prepare"
+
+ssh "$REMOTE" "
+cd $REMOTE_DIR &&
+python3 -m venv .venv &&
+. .venv/bin/activate &&
+pip install -U pip &&
+pip install -e . &&
+python -m rescue_debootstrap.cli.main
+"
+ 

@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rescue-debootstrap"
+version = "0.1.0"
+dependencies = [
+    "pydantic>=2",
+    "pyyaml",
+    "python-dotenv"
+]
+
+[tool.setuptools.packages.find]
+include = ["rescue_debootstrap*"]
