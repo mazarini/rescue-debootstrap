@@ -1,6 +1,8 @@
 from rescue_debootstrap.model.partition_registry import REGISTRY
+from rescue_debootstrap.service.fs_service import FS
 from rescue_debootstrap.service.partition_service import PARTITION
 from rescue_debootstrap.service.security_service import SECURITY
+from rescue_debootstrap.util.btrfs import BTRFS
 from rescue_debootstrap.util.config_util import CONFIG
 from rescue_debootstrap.util.env_util import ENV
 
@@ -13,7 +15,11 @@ def main() -> None:
     print(f"\nInstall {CONFIG.host.full_name} on {CONFIG.host.rescue_name}")
     SECURITY.rescue()
     SECURITY.confirmDestructiveAction()
+
     PARTITION.create_storages(CONFIG.storage_groups)
+    FS.create_fs(CONFIG.storage_groups)
+    BTRFS.create_btrfs_groups(CONFIG.btrfs_groups)
+
     print("\nInstallation complete !")
     REGISTRY.print()
 

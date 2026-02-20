@@ -1,0 +1,17 @@
+mazarini_rescue_debootstrap:
+  btrfs_groups:
+    - label: RPOOL
+      type: raid1
+      devices:
+        - label: RPOOL-1
+        - label: RPOOL-2  
+      tree:
+        - {label: none,        type: "path", name: "@mapped"}  
+        - {label: "ROOT",      type: "subv", name: "@mapped/root"}
+        - {label: "HOME",      type: "subv", name: "@mapped/home"}
+        - {label: "LOCAL",     type: "subv", name: "@mapped/local"} 
+        - {label: "SYSTEM",    type: "subv", name: "@trixie"} 
+        - {label: "VAR",       type: "subv", name: "@trixie/var"}
+        - {label: "VAR-CACHE", type: "subv", name: "@trixie/var/cache"}
+        - {label: "VAR-LOG",   type: "subv", name: "@trixie/var/log"}
+        - {label: "VAR-TMP",   type: "subv", name: "@trixie/var/tmp"}

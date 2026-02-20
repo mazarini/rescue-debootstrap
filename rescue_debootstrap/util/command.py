@@ -7,7 +7,7 @@ from rescue_debootstrap.util.env_util import ENV
 class command:
     def sh(self, command: str) -> None:
         """Exécute une commande bash et affiche la sortie en temps réel. Retourne le code de retour."""
-        print(f"\n{command}")
+        print(f"+ {command}")
         if ENV.dry_run:
             print("Dry-run mode: Command not executed.")
             return
