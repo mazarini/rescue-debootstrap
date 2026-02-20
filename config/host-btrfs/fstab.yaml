@@ -1,0 +1,16 @@
+mazarini_rescue_debootstrap:
+  fstab:
+    - {label: "@trixie",           type: "btrfs",  mountpoint: "/" } 
+    - {label: "BOOT-1",            type: "ext4",   mountpoint: "/boot" }   
+    - {label: "EFI-1",             type: "vfat",   mountpoint: "/boot/efi" }   
+    - {label: "EFI-2",             type: "vfat",   mountpoint: "/boot/efi2" }   
+    - {label: "@mapped/root",      type: "btrfs",  mountpoint: "/root" }   
+    - {label: "@mapped/home",      type: "btrfs",  mountpoint: "/home" }
+    - {label: "TEMP",              type: "memory", mountpoint: "/tmp" }
+    - {label: "@mapped/local",     type: "btrfs",  mountpoint: "/usr/local" } 
+    - {label: "@trixie/var",       type: "btrfs",  mountpoint: "/var" } 
+    - {label: "@trixie/var/cache", type: "btrfs",  mountpoint: "/var/cache" } 
+    - {label: "@trixie/var/log",   type: "btrfs",  mountpoint: "/var/log" } 
+    - {label: "@trixie/var/tmp",   type: "btrfs",  mountpoint: "/var/tmp" }
+    - {label: "SWAP-0",            type: "swap",   mountpoint: none }
+    - {label: "SWAP-1",            type: "swap",   mountpoint: none }  

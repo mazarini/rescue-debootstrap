@@ -7,7 +7,7 @@ class umount:
         CMD.sh(f"umount {options} {mountpoint}")
 
     def all(self) -> None:
-        CMD.sh(f"umount -l {CONFIG.host.mountpoint}")
+        CMD.sh(f"umount -l {CONFIG.host.mountpoint} || true")
 
 
 UMOUNT = umount()

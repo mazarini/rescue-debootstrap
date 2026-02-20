@@ -16,7 +16,7 @@ class PartitionRegistry:
     def print(self):
         print("\nRegistered partitions:")
         for partition in self.partitions:
-            print(f"\n  {partition['label']} <=> {partition['device']}")
+            print(f"  {partition['label']} <=> {partition['device']}")
 
 
 REGISTRY = PartitionRegistry()

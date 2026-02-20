@@ -5,6 +5,8 @@ from rescue_debootstrap.service.security_service import SECURITY
 from rescue_debootstrap.util.btrfs import BTRFS
 from rescue_debootstrap.util.config_util import CONFIG
 from rescue_debootstrap.util.env_util import ENV
+from rescue_debootstrap.util.mount import MOUNT
+from rescue_debootstrap.util.umount import UMOUNT
 
 
 def main() -> None:
@@ -16,9 +18,11 @@ def main() -> None:
     SECURITY.rescue()
     SECURITY.confirmDestructiveAction()
 
+    UMOUNT.all()
     PARTITION.create_storages(CONFIG.storage_groups)
     FS.create_fs(CONFIG.storage_groups)
     BTRFS.create_btrfs_groups(CONFIG.btrfs_groups)
+    MOUNT.all()
 
     print("\nInstallation complete !")
     REGISTRY.print()
