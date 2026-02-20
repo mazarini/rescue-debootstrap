@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 
 from rescue_debootstrap.model.btrfs_group import BtrfsGroup
+from rescue_debootstrap.model.debootstrap import Debootstrap
 from rescue_debootstrap.model.fstab import Fstab
 from rescue_debootstrap.model.host import Host
 from rescue_debootstrap.model.storage_group import StorageGroup
@@ -11,3 +12,4 @@ class InstallConfig(BaseModel):
     storage_groups: list[StorageGroup] = Field(default_factory=list)
     btrfs_groups: list[BtrfsGroup] = Field(default_factory=list)
     fstab: list[Fstab] = Field(default_factory=list)
+    debootstrap: Debootstrap = Field(default_factory=Debootstrap)

@@ -1,0 +1,19 @@
+mazarini_rescue_debootstrap:
+  debootstrap:
+    suite: trixie
+    arch: amd64
+    mirror: "http://deb.debian.org/debian"
+    components:
+      - main
+      - contrib
+      - non-free
+      - firmware-nonfree
+    variant: minbase
+    # packages to include in the debootstrap image
+    include:
+      - locales
+      - vim
+      - linux-image-amd64
+      - openssh-server
+      - grub-efi-amd64
+      - dialog
