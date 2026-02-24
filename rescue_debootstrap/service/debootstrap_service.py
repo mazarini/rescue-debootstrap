@@ -14,7 +14,7 @@ class DebootstrapService:
         cmd += f" --components={','.join(debootstrap.components)}"
         cmd += f" {debootstrap.suite} {CONFIG.host.mountpoint} {debootstrap.mirror}"
         CMD.sh(cmd)
-        MOUNT.rbind()
+        MOUNT.bind()
 
 
 DEBOOTSTRAP = DebootstrapService()

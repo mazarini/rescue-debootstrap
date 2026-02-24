@@ -42,6 +42,13 @@ class Env:
                 f"Répertoire de configuration host introuvable : {self.host_config_dir_path}"
             )
 
+    def is_dry_run(self, msg: str) -> bool:
+        if self.dry_run:
+            print(f"[dry run]{msg}", flush=True)
+        else:
+            print(msg, flush=True)
+        return self.dry_run
+
     def print(self) -> None:
         print("Loaded environment :")
         print(f" - Host config : {self.host_config}")

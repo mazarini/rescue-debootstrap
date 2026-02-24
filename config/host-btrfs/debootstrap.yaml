@@ -7,13 +7,9 @@ mazarini_rescue_debootstrap:
       - main
       - contrib
       - non-free
-      - firmware-nonfree
+      - non-free-firmware
     variant: minbase
     # packages to include in the debootstrap image
     include:
-      - locales
-      - vim
-      - linux-image-amd64
-      - openssh-server
-      - grub-efi-amd64
       - dialog
+      - zstd

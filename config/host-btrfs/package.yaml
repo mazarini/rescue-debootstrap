@@ -1,0 +1,30 @@
+mazarini_rescue_debootstrap:
+  packages:
+    
+    # without packages,
+    - files:
+        - "/root/.bashrc"
+      cmd:
+        - "chmod 1777 /tmp" 
+
+    - name: locales
+      sed:
+        - { file: /etc/locale.gen, filter: '^# \(fr_FR.UTF-8 UTF-8\)', replace: '\1'} 
+        - { file: /etc/locale.gen, filter: '^# \(en_US.UTF-8 UTF-8\)', replace: '\1'} 
+      cmd:
+        - "locale-gen fr_FR.UTF-8 en_US.UTF-8"
+        - "update-locale LANG=fr_FR.UTF-8"
+
+    - name: vim
+      files:
+        - /root/.vimrc
+    
+    - name: btrfs-progs
+    
+    - name: openssh-server
+      sed: 
+        - { file: /etc/ssh/sshd_config, filter: '^#PermitRootLogin/PermitRootLogin/', replace: 'PermitRootLogin'} 
+    
+    - name: linux-image-amd64
+
+    - name: grub-efi-amd64

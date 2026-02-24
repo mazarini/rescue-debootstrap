@@ -10,9 +10,9 @@ class mount:
     def chroot_all(self) -> None:
         CMD.chroot("mount -a")
 
-    def rbind(self) -> None:
-        for device in ["/dev", "/proc", "/sys", "/run"]:
-            self.device(device, f"{CONFIG.host.mountpoint}{device}", "--rbind")
+    def bind(self) -> None:
+        for device in ["/dev", "/dev/pts", "/proc", "/sys", "/run"]:
+            self.device(device, f"{CONFIG.host.mountpoint}{device}", "--bind")
 
     def all(self) -> None:
         print(f"Mounting all {len(CONFIG.fstab)} filesystems...")
