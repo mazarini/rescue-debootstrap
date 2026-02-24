@@ -28,3 +28,7 @@ mazarini_rescue_debootstrap:
     - name: linux-image-amd64
 
     - name: grub-efi-amd64
+      cmd:
+        - grub-install --target=x86_64-efi --efi-directory=/boot/efi  --bootloader-id=debian1
+        - grub-install --target=x86_64-efi --efi-directory=/boot/efi2 --bootloader-id=debian2
+        - update-grub
