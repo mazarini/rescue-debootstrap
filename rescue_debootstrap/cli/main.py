@@ -1,6 +1,7 @@
 from rescue_debootstrap.model.partition_registry import REGISTRY
 from rescue_debootstrap.service.debootstrap_service import DEBOOTSTRAP
 from rescue_debootstrap.service.fs_service import FS
+from rescue_debootstrap.service.fstab_service import FSTAB
 from rescue_debootstrap.service.package_service import PACKAGE
 from rescue_debootstrap.service.partition_service import PARTITION
 from rescue_debootstrap.service.security_service import SECURITY
@@ -25,6 +26,7 @@ def main() -> None:
     BTRFS.create_btrfs_groups(CONFIG.btrfs_groups)
     DEBOOTSTRAP.run(CONFIG.debootstrap)
     PACKAGE.install_all()
+    FSTAB.create_fstab()
     print("\nInstallation complete !")
     REGISTRY.print()
 
