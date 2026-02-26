@@ -23,11 +23,7 @@ class mount:
                 CMD.sh(
                     f"mount -o subvol={fs.label} {REGISTRY.get(fs.label)} {CONFIG.host.mountpoint}{fs.mountpoint}"
                 )
-            if fs.type == "vfat":
-                CMD.sh(
-                    f"mount {REGISTRY.get(fs.label)} {CONFIG.host.mountpoint}{fs.mountpoint}"
-                )
-            if fs.type == "ext4":
+            if fs.type in {"efi", "vfat", "ext4"}:
                 CMD.sh(
                     f"mount {REGISTRY.get(fs.label)} {CONFIG.host.mountpoint}{fs.mountpoint}"
                 )

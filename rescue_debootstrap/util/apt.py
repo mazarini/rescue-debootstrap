@@ -21,14 +21,14 @@ class AptUtil:
         content = self._source_file()
         FILE.create(target, content)
         # First and unique update + dist-upgrade
-        CMD.chroot("apt-get update", CONFIG.host.mountpoint)
-        CMD.chroot("apt-get -y dist-upgrade", CONFIG.host.mountpoint)
+        CMD.chroot("apt-get update")
+        CMD.chroot("apt-get -y dist-upgrade")
 
     # ─────────────────────────────────────────────
 
     def _run(self, args: str) -> None:
         self._initialize()  # if needed
-        CMD.chroot(f"apt-get -y {args}", CONFIG.host.mountpoint)
+        CMD.chroot(f"apt-get -y {args}")
 
     # ─────────────────────────────────────────────
 

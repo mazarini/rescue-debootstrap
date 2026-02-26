@@ -26,15 +26,15 @@ class PackageService:
 
         # 4️⃣ Commandes post-install
         for command in pkg.cmd:
-            CMD.chroot(command, CONFIG.host.mountpoint)
+            CMD.chroot(command)
 
     # -------------------------------------------------------------
 
     def reinstall_packages(self):
         for pkg in reversed(CONFIG.packages):
             if pkg.name:
-                CMD.chroot(f"apt-get purge -y {pkg.name}", CONFIG.host.mountpoint)
-        CMD.chroot("apt-get autoremove -y --purge", CONFIG.host.mountpoint)
+                CMD.chroot(f"apt-get purge -y {pkg.name}")
+        CMD.chroot("apt-get autoremove -y --purge")
         self.install_all()
 
 

@@ -5,6 +5,7 @@ from rescue_debootstrap.model.partition_registry import REGISTRY
 from rescue_debootstrap.model.storage_group import StorageGroup
 from rescue_debootstrap.util.parted import PARTED
 from rescue_debootstrap.util.sgdisk import SGDISK
+from rescue_debootstrap.util.wipefs import WIPEFS
 
 
 class PartionService:
@@ -44,6 +45,7 @@ class PartionService:
 
     def raz_disk(self, disk: Disk):
         SGDISK.zap_all(disk.device)
+        WIPEFS.all(disk.device)
         PARTED.mklabel(disk.device)
 
 

@@ -3,6 +3,7 @@ import shlex
 import subprocess
 
 from rescue_debootstrap.exception.command_exception import CommandException
+from rescue_debootstrap.util.config_util import CONFIG
 from rescue_debootstrap.util.env_util import ENV
 
 
@@ -33,11 +34,11 @@ class Command:
         if process.returncode != 0:
             raise CommandException(command, process.returncode)
 
-    def chroot(self, command: str, mountpoint: str) -> None:
+    def chroot(self, command: str) -> None:
         """Exécute une commande dans le chroot et affiche toute la sortie."""
         # sécurise la commande pour éviter les problèmes de quotes
         safe_cmd = shlex.quote(command)
-        self.sh(f"chroot {mountpoint} /bin/bash -c {safe_cmd}")
+        self.sh(f"chroot {CONFIG.host.mountpoint} /bin/bash -c {safe_cmd}")
 
 
 # instance globale

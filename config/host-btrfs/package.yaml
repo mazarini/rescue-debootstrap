@@ -29,6 +29,14 @@ mazarini_rescue_debootstrap:
 
     - name: grub-efi-amd64
       cmd:
-        - grub-install --target=x86_64-efi --efi-directory=/boot/efi  --bootloader-id=debian1
-        - grub-install --target=x86_64-efi --efi-directory=/boot/efi2 --bootloader-id=debian2
-        - update-grub
+        - "grub-install --target=x86_64-efi --efi-directory=/boot/efi  --bootloader-id=debian1"
+        - "grub-install --target=x86_64-efi --efi-directory=/boot/efi2 --bootloader-id=debian2"
+        - "update-grub"
+
+    - name: systemd-resolved 
+      files:
+      - "/etc/systemd/network/10-loopback.network"
+      - "/etc/systemd/network/20-dhcp.network"
+      cmd:
+        - "systemctl enable systemd-networkd"
+        - "systemctl enable systemd-resolved"
