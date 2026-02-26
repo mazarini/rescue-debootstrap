@@ -4,12 +4,13 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=False)
 class Env:
     # __init__  arg (required)
     app_env: str
     app_debug: bool
     dry_run: bool
+    dry_step: bool
     host_config: str
     project_dir_path: Path
     # __post_init__  arg (computed  after __init__)
@@ -43,11 +44,11 @@ class Env:
             )
 
     def is_dry_run(self, msg: str) -> bool:
-        if self.dry_run:
+        if self.dry_run | self.dry_step:
             print(f"[dry run]{msg}", flush=True)
-        else:
-            print(msg, flush=True)
-        return self.dry_run
+            return True
+        print(msg, flush=True)
+        return False
 
     def print(self) -> None:
         print("Loaded environment :")

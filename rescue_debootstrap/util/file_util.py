@@ -49,7 +49,9 @@ class FileUtil:
 
         target = self._chroot_path(Path(file_path))
 
-        if not target.exists():
+        if not target.exists() and not ENV.is_dry_run(
+            f"! File not found for sed: {target}"
+        ):
             raise FileNotFoundError(f"File not found for sed: {target}")
 
         # backup sécurité
@@ -88,8 +90,6 @@ class FileUtil:
         """
         Sauvegarde le fichier original une seule fois.
         """
-        self._touch(file)
-
         backup = file.with_name(file.name + ".original")
 
         if backup.exists():
@@ -98,6 +98,7 @@ class FileUtil:
         if ENV.is_dry_run(f"Backup {file} -> {backup}"):
             return
 
+        self._touch(file)
         shutil.copyfile(file, backup)
 
     # ─────────────────────────────────────────────

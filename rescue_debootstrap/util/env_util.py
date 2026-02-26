@@ -37,6 +37,7 @@ class EnvUtil:
             app_env=data["app_env"] or "dev",  # fallback if None
             app_debug=self._str_to_bool(data["app_debug"]),
             dry_run=self._str_to_bool(data["dry_run"]),
+            dry_step=True,
             host_config=data["host_config"],
             project_dir_path=self._get_project_root_path(),
         )

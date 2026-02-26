@@ -8,10 +8,14 @@ from rescue_debootstrap.service.security_service import SECURITY
 from rescue_debootstrap.util.btrfs import BTRFS
 from rescue_debootstrap.util.config_util import CONFIG
 from rescue_debootstrap.util.env_util import ENV
+from rescue_debootstrap.util.mount import MOUNT
 from rescue_debootstrap.util.umount import UMOUNT
 
 
 def main() -> None:
+
+    ENV.DRY_STEP = True
+
     print("\n\n" + "=" * 80)
     print("Rescue debootstrap installer")
     print("=" * 80)
@@ -24,7 +28,15 @@ def main() -> None:
     PARTITION.create_storages(CONFIG.storage_groups)
     FS.create_fs(CONFIG.storage_groups)
     BTRFS.create_btrfs_groups(CONFIG.btrfs_groups)
+
     DEBOOTSTRAP.run(CONFIG.debootstrap)
+
+    if not ENV.dry_run and ENV.dry_step:
+        ENV.dry_step = False
+        MOUNT.all()
+        MOUNT.bind()
+        ENV.dry_step = True
+
     PACKAGE.install_all()
     FSTAB.create_fstab()
     print("\nInstallation complete !")

@@ -12,9 +12,7 @@ class Command:
         """Exécute une commande bash et affiche toute la sortie en temps réel.
         Lève CommandError si la commande échoue.
         """
-        print(f"+ {command}", flush=True)
-        if ENV.dry_run:
-            print("Dry-run mode: Command not executed.", flush=True)
+        if ENV.is_dry_run(f"+ {command}"):
             return
 
         # subprocess en mode ligne par ligne pour éviter le buffering

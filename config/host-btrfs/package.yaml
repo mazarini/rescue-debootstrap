@@ -21,6 +21,10 @@ mazarini_rescue_debootstrap:
     
     - name: btrfs-progs
     
+    - name: "iputils-ping dnsutils curl"
+    
+    - name: "curl sudo"
+    
     - name: openssh-server
       sed: 
         - { file: /etc/ssh/sshd_config, filter: '^#PermitRootLogin/PermitRootLogin/', replace: 'PermitRootLogin'} 
