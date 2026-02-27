@@ -33,7 +33,7 @@ class FstabService:
         if fs_type == "ext4":
             return f"{device}\t\t{mountpoint}\text4\tdefaults,noatime\t0 {pass_num}"
         if fs_type == "btrfs":
-            return f"{device}\t\t{mountpoint}\tbtrfs\tdefaults,noatime,compress=zstd,ssd,space_cache=v2,subvol={label}\t0 {pass_num}"
+            return f"{device}\t\t{mountpoint}\tbtrfs\tdefaults,noatime,compress=zstd,ssd,space_cache=v2,subvol={label}\t0 0"
         if fs_type == "swap":
             return f"{device}\t\tnone\tswap\tsw,pr=10\t0 0"
         return f"# unknow fs type {label}  {fs_type} {mountpoint}"
