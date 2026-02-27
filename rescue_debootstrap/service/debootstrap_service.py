@@ -18,7 +18,7 @@ class DebootstrapService:
         cmd += f" {debootstrap.suite} {CONFIG.host.mountpoint} {debootstrap.mirror}"
         CMD.sh(cmd)
         MOUNT.bind()
-        CMD.chroot("export DEBIAN_FRONTEND=noninteractive")
+        CMD.chroot("chattr +m /boot")
         self._create_hostname()
         self._create_hosts()
 
@@ -27,10 +27,11 @@ class DebootstrapService:
         FILE.create(Path("/etc/hostname"), hostname)
 
     def _create_hosts(self):
-        hosts_content = f"""127.0.0.1   localhost localhost@localdomain
+        hosts_content = f"""# Configuration IPv4
+127.0.0.1   localhost localhost@localdomain
 127.0.1.1   {CONFIG.host.hostname} {CONFIG.host.hostname}.{CONFIG.host.domain}
 
-# Configuration IPv6 (indispensable aujourd'hui)
+# Configuration IPv6
 ::1         localhost ip6-localhost ip6-loopback
 ff02::1     ip6-allnodes
 ff02::2     ip6-allrouters

@@ -1,4 +1,5 @@
 # command.py
+import os
 import shlex
 import subprocess
 
@@ -15,6 +16,10 @@ class Command:
         if ENV.is_dry_run(f"+ {command}"):
             return
 
+        custom_env = os.environ | {
+            "LC_ALL": "C.UTF-8",
+            "DEBIAN_FRONTEND": "noninteractive",
+        }
         # subprocess en mode ligne par ligne pour éviter le buffering
         process = subprocess.Popen(
             command,
@@ -23,6 +28,7 @@ class Command:
             stderr=subprocess.STDOUT,
             text=True,
             bufsize=1,  # line-buffered
+            env=custom_env,
         )
 
         for line in process.stdout:

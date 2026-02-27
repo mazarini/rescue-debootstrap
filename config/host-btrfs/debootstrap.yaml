@@ -13,3 +13,5 @@ mazarini_rescue_debootstrap:
     include:
       - dialog
       - zstd
+      - btrfs-progs
+      - e2fsprogs

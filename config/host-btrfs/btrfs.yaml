@@ -11,7 +11,7 @@ mazarini_rescue_debootstrap:
         - {label: "HOME",      type: "subv", name: "@mapped/home"}
         - {label: "LOCAL",     type: "subv", name: "@mapped/local"} 
         - {label: "SYSTEM",    type: "subv", name: "@trixie"} 
-        - {label: "VAR",       type: "subv", name: "@trixie/var"}
+        - {label: "VAR",       type: "path", name: "@trixie/var"}
         - {label: "VAR-CACHE", type: "subv", name: "@trixie/var/cache"}
         - {label: "VAR-LOG",   type: "subv", name: "@trixie/var/log"}
         - {label: "VAR-TMP",   type: "subv", name: "@trixie/var/tmp"}
