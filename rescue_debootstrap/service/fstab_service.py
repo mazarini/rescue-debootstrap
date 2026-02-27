@@ -35,7 +35,7 @@ class FstabService:
         if fs_type == "btrfs":
             return f"{device}\t\t{mountpoint}\tbtrfs\tdefaults,noatime,compress=zstd,ssd,space_cache=v2,subvol={label}\t0 {pass_num}"
         if fs_type == "swap":
-            return f"{device}\t\tnone\tswap\tsw\t0 0"
+            return f"{device}\t\tnone\tswap\tsw,pr=10\t0 0"
         return f"# unknow fs type {label}  {fs_type} {mountpoint}"
 
     def create_fstab(self):

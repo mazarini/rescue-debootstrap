@@ -14,7 +14,7 @@ from rescue_debootstrap.util.umount import UMOUNT
 
 def main() -> None:
 
-    ENV.DRY_STEP = True
+    ENV.dry_step = True
 
     print("\n\n" + "=" * 80)
     print("Rescue debootstrap installer")

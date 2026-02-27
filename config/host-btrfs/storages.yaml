@@ -11,6 +11,5 @@ mazarini_rescue_debootstrap:
         - {number: 2, device: "/dev/nvme1n1"}
       partitions:
         - { number: 1, type: "efi",        size: 66560,     label: "EFI" }   # 260 MiB
-        - { number: 2, type: "ext4",       size: 195328,    label: "BOOT" }  # 783 MiB
+        - { number: 2, type: "btrfs",      size: 107723273, label: "RPOOL"}  # 421 GiB
         - { number: 3, type: "linux-swap", size: 2097152,   label: "SWAP" }  # 8 GiB
-        - { number: 4, type: "btrfs",      size: 107527945, label: "RPOOL"}  # 420 GiB

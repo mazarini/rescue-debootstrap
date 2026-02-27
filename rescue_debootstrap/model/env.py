@@ -44,8 +44,11 @@ class Env:
             )
 
     def is_dry_run(self, msg: str) -> bool:
-        if self.dry_run | self.dry_step:
+        if self.dry_run:
             print(f"[dry run]{msg}", flush=True)
+            return True
+        if self.dry_step:
+            print(f"[dry step]{msg}", flush=True)
             return True
         print(msg, flush=True)
         return False
