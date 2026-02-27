@@ -21,15 +21,19 @@ mazarini_rescue_debootstrap:
     
     - name: btrfs-progs
     
-    - name: "iputils-ping dnsutils curl"
+    - name: "iputils-ping dnsutils"
+
+    - name: "unattended-upgrades apt-listchanges"
     
-    - name: "curl sudo"
+    - name: "curl sudo debian-goodies locate powermgmt-base"
     
     - name: openssh-server
       sed: 
         - { file: /etc/ssh/sshd_config, filter: '^#PermitRootLogin/PermitRootLogin/', replace: 'PermitRootLogin'} 
     
     - name: linux-image-amd64
+      files:
+        - /etc/initramfs-tools/modules
 
     - name: grub-efi-amd64
       cmd:
